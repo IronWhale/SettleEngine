@@ -47,7 +47,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Actor\Player.cs" />
-    <Compile Include="src\Camera.cs" />
     <Compile Include="src\GlobalEnums.cs" />
     <Compile Include="src\Items\Inventory.cs" />
     <Compile Include="src\Items\Item.cs" />
@@ -62,10 +61,6 @@
     <Compile Include="src\Sounds\Fx.cs" />
     <Compile Include="src\Sounds\Music.cs" />
     <Compile Include="src\Sounds\Voice.cs" />
-    <Compile Include="src\Structures\Doorway.cs" />
-    <Compile Include="src\Structures\Floor.cs" />
-    <Compile Include="src\Structures\Structure.cs" />
-    <Compile Include="src\Structures\Wall.cs" />
     <Compile Include="src\Tools\Loader.cs" />
     <Compile Include="src\Tools\QuickDraw.cs" />
     <Compile Include="src\Tools\Raycast.cs" />
@@ -161,7 +156,6 @@
     <None Include="Content\Fonts\Xolonium-Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Models\" />
     <Folder Include="src\Control\" />
   </ItemGroup>
   <ItemGroup>
