@@ -113,8 +113,8 @@ namespace SettleEngine
 
             studioScreen.Load(Content);
 
-            titleFont = Content.Load<SpriteFont>("Fonts/TitleFont");
-            conFont = Content.Load<SpriteFont>("Fonts/ConsoleFont");
+            titleFont = Content.Load<SpriteFont>("Fonts/Title");
+            conFont = Content.Load<SpriteFont>("Fonts/Console");
 
             mainMenu.Load(Content);
             settingMenu.Load(Content);
