@@ -23,7 +23,7 @@ namespace SettleEngine
 
 
         //Display
-        private string windowTitle = "Remnants: Settle";
+        private string windowTitle = "Remnants";
         private string studioName = "Iron Whale";
         //Real Dimensions
         private int WIDTH = 1280;
