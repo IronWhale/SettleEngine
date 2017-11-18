@@ -47,6 +47,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Actor\Player.cs" />
+    <Compile Include="src\GameManager.cs" />
     <Compile Include="src\GlobalEnums.cs" />
     <Compile Include="src\Inputs\InputManager.cs" />
     <Compile Include="src\Items\Inventory.cs" />
