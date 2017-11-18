@@ -47,7 +47,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Actor\Player.cs" />
-    <Compile Include="src\Camera.cs" />
     <Compile Include="src\GlobalEnums.cs" />
     <Compile Include="src\Inputs\InputManager.cs" />
     <Compile Include="src\Items\Inventory.cs" />
@@ -158,7 +157,11 @@
     <None Include="Content\Fonts\Xolonium-Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Folder Include="Content\Models\" />
+=======
+    <Folder Include="src\Control\" />
+>>>>>>> 0fae8c51e05861589a43885391ae24ae0b265737
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Textures\White_square.png" />
