@@ -157,11 +157,7 @@
     <None Include="Content\Fonts\Xolonium-Bold.ttf" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Folder Include="Content\Models\" />
-=======
-    <Folder Include="src\Control\" />
->>>>>>> 0fae8c51e05861589a43885391ae24ae0b265737
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Textures\White_square.png" />
