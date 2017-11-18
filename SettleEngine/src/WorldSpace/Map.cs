@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using SettleEngine.src.Structures;
 
 
 namespace SettleEngine.src.WorldSpace
@@ -26,9 +25,7 @@ namespace SettleEngine.src.WorldSpace
         }
 
         internal string getName()
-        {
-            return name;
-        }
+        { return name; }
 
         public void loadMapFromFile(string fileName)
         { }

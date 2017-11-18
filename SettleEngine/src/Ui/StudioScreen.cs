@@ -17,7 +17,7 @@ namespace SettleEngine.src.Ui
     {
         private String studioName = "-Iron Whale Studios-";
         private SpriteFont font;
-        private FadeOut fOut = new FadeOut(Game1.UpdateGameMode, "MainMenu", 7.0f, 6.5f);
+        private FadeOut fOut = new FadeOut(Game1.UpdateGameMode, "MainMenu", 2.0f, 1.5f);
 
 
         public void Initialize()

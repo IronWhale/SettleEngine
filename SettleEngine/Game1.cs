@@ -247,6 +247,8 @@ namespace SettleEngine
             base.Draw(gameTime);
         }
 
+
+        //@CLEANUP
         //Changes the GameMode using the default Fadeout parameters
         public static void ChangeAction(string s)
         {
@@ -254,7 +256,7 @@ namespace SettleEngine
             Action<string>action = Game1.UpdateGameMode;
             transitionManager.Add(new FadeOut(action, s));
         }
-
+        //@CLEANUP
         //Changes the GameMode using Custom Fadeout params
         public static void ChangeAction(string s, FadeOut fOut)
         {
@@ -262,7 +264,7 @@ namespace SettleEngine
             Action<string> action = Game1.UpdateGameMode;
             transitionManager.Add(fOut);
         }
-
+        //@CLEANUP
         public static void UpdateGameMode(string action)
         {
             Enum.TryParse(action, out GameMode mode);

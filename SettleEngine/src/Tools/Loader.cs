@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using SettleEngine.src.Items;
-using SettleEngine.src.Structures;
 using SettleEngine.src.Ui;
 using System;
 using System.Collections.Generic;
@@ -14,10 +13,6 @@ namespace SettleEngine.src.Tools
 {
     public static class Loader
     {
-        public static Structure LoadStructure() {
-            //TODO:
-            return null;
-        }
 
         public static Item LoadItem()
         {
