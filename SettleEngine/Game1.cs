@@ -184,14 +184,12 @@ namespace SettleEngine
             if (k.IsKeyDown(Keys.F12))
             { Exit(); }
 
-
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             frameCounter++;
-
 
             GraphicsDevice.SetRenderTarget(target);
             graphics.GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 1.0f, 0);

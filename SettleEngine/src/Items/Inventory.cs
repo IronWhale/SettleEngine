@@ -10,5 +10,21 @@ namespace SettleEngine.src.Items
     {
 
 
+        public void Use(Item i){
+            //@WRITE
+        }
+
+        public void Drop(Item i)
+        {
+            //@WRITE
+        }
+
+        public void Add(Item i)
+        {
+            //@WRITE
+        }
+
+        
+        
     }
 }
