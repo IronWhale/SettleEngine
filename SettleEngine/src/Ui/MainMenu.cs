@@ -25,10 +25,6 @@ namespace SettleEngine.src.Ui
             //Middle bar is not drawn just has some text that says Settle in the for ground and the animated
             //Content is the background
             Panel mPanel = new Panel(false, new Rectangle(0,100,1920,680), Color.TransparentBlack);
-<<<<<<< HEAD
-=======
-            
->>>>>>> 0fae8c51e05861589a43885391ae24ae0b265737
 
             //Bottom Bar contains all the buttons for the menu
             Panel bPanel = new Panel(false, new Rectangle(0, 780, 1920, 300), new Color(45,45,45,255));
