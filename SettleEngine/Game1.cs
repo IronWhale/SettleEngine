@@ -23,6 +23,7 @@ namespace SettleEngine
 
 
         //Display
+        private string windowTitle = "Remnants";
         private string studioName = "Iron Whale";
         //Real Dimensions
         private int WIDTH = 1280;
@@ -112,6 +113,8 @@ namespace SettleEngine
 
             studioScreen.Load(Content);
 
+            titleFont = Content.Load<SpriteFont>("Fonts/Title");
+            conFont = Content.Load<SpriteFont>("Fonts/Console");
 
             mainMenu.Load(Content);
             settingMenu.Load(Content);
