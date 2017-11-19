@@ -24,7 +24,6 @@ namespace SettleEngine
 
         //Display
         private string windowTitle = "Remnants";
-        private string studioName = "Iron Whale";
         //Real Dimensions
         private int WIDTH = 1280;
         private int HEIGHT = 720;
@@ -222,17 +221,14 @@ namespace SettleEngine
                 case GameMode.Running:
                     break;
                 case GameMode.Testing:
-
-
                     break;
             }
 
-            if (devMode) {
-                spriteBatch.DrawString(conFont, ("Mouse X: " + m.X + "  Mouse Y: " + m.Y), new Vector2(10, 10), Color.Black);
-            }
-            if (showFps) {
-                spriteBatch.DrawString(conFont, ("FPS: " + frameRate), new Vector2(10, 30), Color.Black);
-            }
+            if (devMode)
+            { spriteBatch.DrawString(conFont, ("Mouse X: " + m.X + "  Mouse Y: " + m.Y), new Vector2(10, 10), Color.Black); }
+
+            if (showFps)
+            { spriteBatch.DrawString(conFont, ("FPS: " + frameRate), new Vector2(10, 30), Color.Black); }
 
 
             transitionManager.Draw(spriteBatch);
