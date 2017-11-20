@@ -196,7 +196,7 @@ namespace SettleEngine
             GraphicsDevice.SetRenderTarget(target);
             graphics.GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 1.0f, 0);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null,null, null, null);
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null,null, null, null);
 
             switch (gameMode)
             {
