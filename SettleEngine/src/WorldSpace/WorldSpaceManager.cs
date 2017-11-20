@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SettleEngine.src.Actor;
 
 namespace SettleEngine.src.WorldSpace
 {
@@ -13,30 +14,34 @@ namespace SettleEngine.src.WorldSpace
     {
         private string locationName;
         private Map map;
-        
-
+        private Vector2 scale = new Vector2(1920 / 32, 1080 / 18); //number of pixels in each tile
+        private Player player;
 
         public void Initialize()
         {
             //currentCell = map.getName();
+
+
+
+            //TEST INITIALIZATION
+            player = new Player(new Vector2(0,0), .1f, ActorDirection.Down);
+            map = new Map();
+            map.loadTEST();
         }
 
         public void Load(String mapFile)
         {
-            if (map == null) { //Load the file save nothing
-            }
-            else {
-                //TODO: Load the map file and save the old file
-            }
-        }
-        public void Update(GameTime gameTime)
-        {
 
+        }
+        public void Update(GameTime gameTime, MouseState m, KeyboardState k)
+        {
+            map.Update();
+            player.Update(gameTime, m, k);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+            map.Draw(spriteBatch, player.getPos(), scale);
         }
     }
 }

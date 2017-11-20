@@ -75,7 +75,7 @@ namespace SettleEngine
 
 
             gameMode = GameMode.Studio; //Set the beginning gameMode
-
+            wsManager = new WorldSpaceManager();
 
             studioScreen = new StudioScreen();
 
@@ -97,6 +97,8 @@ namespace SettleEngine
             studioScreen.Initialize();
             mainMenu.Initialize();
             settingMenu.Initialize();
+
+            wsManager.Initialize();
             
             base.Initialize();
 
@@ -175,6 +177,7 @@ namespace SettleEngine
                     case GameMode.Running:
                         break;
                     case GameMode.Testing:
+                        wsManager.Update(gameTime, m , k);
                         break;
                 }
             }
@@ -193,7 +196,7 @@ namespace SettleEngine
             GraphicsDevice.SetRenderTarget(target);
             graphics.GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 1.0f, 0);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate);
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp, null,null, null, null);
 
             switch (gameMode)
             {
@@ -221,6 +224,7 @@ namespace SettleEngine
                 case GameMode.Running:
                     break;
                 case GameMode.Testing:
+                    wsManager.Draw(spriteBatch);
                     break;
             }
 

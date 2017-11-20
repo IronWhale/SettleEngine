@@ -12,31 +12,47 @@ namespace SettleEngine.src.Actor
 {
     public class Player
     {
-
-
         public float moveSpeed = 1;
-        public Vector3 pos { get; set; }
+        public Vector2 pos;
         public ActorDirection dir { get; set; }
 
+        public Player(Vector2 p, float mSpeed, ActorDirection dir)
+        {
+            this.pos = p;
+            this.moveSpeed = mSpeed;
+            this.dir = dir;
+        }
+
         public void Initialize()
-        { }
+        {
+
+        }
 
         public void Load(ContentManager Content)
-        { }
+        {
+
+        }
 
         public void Update(GameTime gameTime, MouseState m, KeyboardState k) {
 
 
-            //Use Mouse position raycast to current ground level to get rotational orientatoin
-           
+
 
             //Use Keyboard inputs to move the player in the world
-
+            if (k.IsKeyDown(Keys.Down))
+            { pos.Y -= moveSpeed; }
+            if (k.IsKeyDown(Keys.Up))
+            { pos.Y += moveSpeed; }
+            if (k.IsKeyDown(Keys.Left))
+            { pos.X -= moveSpeed; }
+            if (k.IsKeyDown(Keys.Right))
+            { pos.X += moveSpeed; }
 
 
 
             //Update the oldM and oldK for debounching
         }
+
 
         public void Draw(SpriteBatch spriteBatch) {
 
@@ -66,5 +82,13 @@ namespace SettleEngine.src.Actor
 
         }
 
+
+
+
+        public Vector2 getPos()
+        { return pos; }
+
+        public void setPos(Vector2 p)
+        { pos = p; }
     }
 }
