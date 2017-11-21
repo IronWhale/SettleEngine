@@ -29,14 +29,11 @@ namespace SettleEngine.src.Ui
             //Bottom Bar contains all the buttons for the menu
             Panel bPanel = new Panel(false, new Rectangle(0, 780, 1920, 300), new Color(45,45,45,255));
             ControllableGroup cGroup = new ControllableGroup(new Rectangle(1500, 300, 400, 300));
-            cGroup.Add(new Button("Intro",true,Fonts.Console, UILocation.Absolute, new Vector2(1500,800),new Color(205,205,205,255),new Color(255,255,255,255), Game1.ChangeAction, "Intro"));
-            cGroup.Add(new Button("Continue", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 835), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "Continue"));
-            cGroup.Add(new Button("New Game", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 870), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "NewGame"));
-            cGroup.Add(new Button("Load Game", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 905), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "LoadGame"));
-            cGroup.Add(new Button("Settings", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 940), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "Settings"));
-            cGroup.Add(new Button("Credits", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 975), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "Credits"));
-            cGroup.Add(new Button("Exit", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 1010), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "Exit"));
-            cGroup.Add(new Button("TESTING", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 1045), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "Testing"));
+            cGroup.Add(new Button("Load Game", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 800), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "LoadGame"));
+            cGroup.Add(new Button("New Game", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 835), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "NewGame"));
+            cGroup.Add(new Button("Settings", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 870), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "Settings"));
+            cGroup.Add(new Button("Exit", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 905), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "Exit"));
+            cGroup.Add(new Button("TESTING", true, Fonts.Console, UILocation.Absolute, new Vector2(1500, 940), new Color(205, 205, 205, 255), new Color(255, 255, 255, 255), Game1.ChangeAction, "Testing"));
 
 
             //Add the Panels 
@@ -66,8 +63,10 @@ namespace SettleEngine.src.Ui
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
             foreach (var panel in panels)
             { panel.Draw(spriteBatch); }
+            spriteBatch.End();
         }
 
 

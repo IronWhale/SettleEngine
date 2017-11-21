@@ -37,7 +37,9 @@ namespace SettleEngine.src.Ui
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
             spriteBatch.DrawString(font, studioName, new Vector2((1920 / 2 - (font.MeasureString(studioName) / 2).X), (1080 / 2.5f - (font.MeasureString(studioName) / 2).Y)), Color.White);
+            spriteBatch.End();
         }
     }
 }

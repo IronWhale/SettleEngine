@@ -13,7 +13,7 @@ namespace SettleEngine.src
     }
 
     public enum GameMode
-    { Studio, MainMenu, Intro, Continue, NewGame, LoadGame, Running, Settings, Credits, Exit, Testing }
+    { Studio, MainMenu, NewGame, LoadGame, Running, Settings, Exit, Testing }
 
     public enum WorldSpaceMode
     { Normal, Combat, Dialogue}

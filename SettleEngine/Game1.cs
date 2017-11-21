@@ -22,7 +22,7 @@ namespace SettleEngine
         SpriteBatch spriteBatch;
         public static ContentManager manager;
 
-
+        #region DisplayParameters
         //Display
         private string windowTitle = "Remnants";
         //Real Dimensions
@@ -33,30 +33,34 @@ namespace SettleEngine
         private int vHeight = 1080;
         public static Vector2 scale { get; set; }
         private RenderTarget2D target;
+        #endregion
 
         //GameMode and UI Menus
-        private static GameMode gameMode;
-        public static TransitionManager transitionManager = new TransitionManager();
         private bool devMode = true;
+        private static GameMode gameMode;
+
+
+        public static TransitionManager transitionManager = new TransitionManager();
+        private static bool isTransitioning;
         private MainMenu mainMenu = new MainMenu();
         private SettingsMenu settingMenu = new SettingsMenu();
         private StudioScreen studioScreen;
         private SpriteFont titleFont;
         private SpriteFont conFont;
-        
+        private WorldSpaceManager wsManager;
+
         //Inputs
         private KeyboardState k;
         private MouseState m;
 
+        #region FPSFields
         //FPS COUNTER
         private bool showFps = true;
         int frameRate = 0;
         int frameCounter = 0;
         TimeSpan elapsedTime = TimeSpan.Zero;
+        #endregion
 
-        //Manager Creation
-        private WorldSpaceManager wsManager;
-        private static bool isTransitioning;
 
         public Game1()
         {
@@ -88,7 +92,7 @@ namespace SettleEngine
         {
             Debug.WriteLine("[Begin] Game1.Initialize");
 
-            //Create Render Target for scaling
+            //Create Render Target for scaling the screen to any resoltion
             PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
             target = new RenderTarget2D(graphics.GraphicsDevice, vWidth, vHeight, false, SurfaceFormat.Color, DepthFormat.None, pp.MultiSampleCount, RenderTargetUsage.DiscardContents );
 
@@ -98,8 +102,9 @@ namespace SettleEngine
             studioScreen.Initialize();
             mainMenu.Initialize();
             settingMenu.Initialize();
-
             wsManager.Initialize(graphics.GraphicsDevice);
+
+
             
             base.Initialize();
 
@@ -109,6 +114,7 @@ namespace SettleEngine
         protected override void LoadContent()
         {
             Debug.WriteLine("[Begin] Game1.LoadContent");
+
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -125,9 +131,8 @@ namespace SettleEngine
         }
 
         protected override void UnloadContent()
-        {
-
-        }
+        { }
+        
 
         protected override void Update(GameTime gameTime)
         {
@@ -148,6 +153,7 @@ namespace SettleEngine
             }
             #endregion
 
+            //Update the transistions
             transitionManager.Update(gameTime, m , k);
 
             if (!isTransitioning) {
@@ -159,10 +165,6 @@ namespace SettleEngine
                     case GameMode.MainMenu:
                         mainMenu.Update(gameTime, m, k);
                         break;
-                    case GameMode.Intro:
-                        break;
-                    case GameMode.Continue:
-                        break;
                     case GameMode.NewGame:
                         break;
                     case GameMode.LoadGame:
@@ -170,12 +172,11 @@ namespace SettleEngine
                     case GameMode.Settings:
                         settingMenu.Update(gameTime, m, k);
                         break;
-                    case GameMode.Credits:
-                        break;
                     case GameMode.Exit:
                         Exit();
                         break;
                     case GameMode.Running:
+
                         break;
                     case GameMode.Testing:
                         wsManager.Update(gameTime, m , k);
@@ -197,25 +198,14 @@ namespace SettleEngine
             GraphicsDevice.SetRenderTarget(target);
             graphics.GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 1.0f, 0);
 
-            //TODO: Move the begin to inside the switch statement
-
-            
-
+            //TODO: Move the begin to inside the switch statement.
             switch (gameMode)
             {
                 case GameMode.Studio:
-                    spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
                     studioScreen.Draw(spriteBatch);
-                    spriteBatch.End();
                     break;
                 case GameMode.MainMenu:
-                    spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
                     mainMenu.Draw(spriteBatch);
-                    spriteBatch.End();
-                    break;
-                case GameMode.Intro:
-                    break;
-                case GameMode.Continue:
                     break;
                 case GameMode.NewGame:
                     break;
@@ -226,8 +216,6 @@ namespace SettleEngine
                     settingMenu.Draw(spriteBatch);
                     spriteBatch.End();
                     break;
-                case GameMode.Credits:
-                    break;
                 case GameMode.Exit:
                     break;
                 case GameMode.Running:
@@ -237,27 +225,32 @@ namespace SettleEngine
                     break;
             }
 
-
+            #region DrawExtras
             spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
+
             if (devMode)
             { spriteBatch.DrawString(conFont, ("Mouse X: " + m.X + "  Mouse Y: " + m.Y), new Vector2(10, 10), Color.Black); }
 
             if (showFps)
             { spriteBatch.DrawString(conFont, ("FPS: " + frameRate), new Vector2(10, 30), Color.Black); }
-
+            #endregion 
 
             transitionManager.Draw(spriteBatch);
 
+            #region ResetRenderTarget
             GraphicsDevice.SetRenderTarget(null);
             graphics.GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 1.0f, 0);
             spriteBatch.Draw(target,Vector2.Zero, Color.White);
+
+            #endregion
+
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
 
-        //@CLEANUP
+        //@CLEANUP MOVE TO UPDATE METHOD
         //Changes the GameMode using the default Fadeout parameters
         public static void ChangeAction(string s)
         {
