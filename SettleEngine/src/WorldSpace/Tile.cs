@@ -24,11 +24,11 @@ namespace SettleEngine.src.WorldSpace
         public void Update()
         { }
 
-        public void Draw(SpriteBatch spriteBatch, Vector2 pos, Vector2 scale)
+        public void Draw(SpriteBatch spriteBatch, Vector2 scale)
         {
             //Recalulate the Rectangles position on screen
-            int x = -1 * (int)((pos.X - iPos.X) * (scale.X)) - 960;
-            int y = -1 * (int)((pos.Y - iPos.Y) * (scale.Y)) - 540;
+            int x = (int)(iPos.X * scale.X) ;
+            int y = (int)(iPos.Y * scale.Y);
             rec = new Rectangle(x, y,(int)scale.X, (int)scale.Y);
             //Draw the Tile
             spriteBatch.Draw(texture, rec, Color.White);

@@ -18,6 +18,7 @@ namespace SettleEngine
     public class Game1 : Game
     {
         public static GraphicsDeviceManager graphics;
+        public static GraphicsDevice graphicsDevice;
         SpriteBatch spriteBatch;
         public static ContentManager manager;
 
@@ -98,7 +99,7 @@ namespace SettleEngine
             mainMenu.Initialize();
             settingMenu.Initialize();
 
-            wsManager.Initialize();
+            wsManager.Initialize(graphics.GraphicsDevice);
             
             base.Initialize();
 
@@ -196,15 +197,21 @@ namespace SettleEngine
             GraphicsDevice.SetRenderTarget(target);
             graphics.GraphicsDevice.Clear(ClearOptions.Target, Color.Black, 1.0f, 0);
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null,null, null, null);
+            //TODO: Move the begin to inside the switch statement
+
+            
 
             switch (gameMode)
             {
                 case GameMode.Studio:
+                    spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
                     studioScreen.Draw(spriteBatch);
+                    spriteBatch.End();
                     break;
                 case GameMode.MainMenu:
+                    spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
                     mainMenu.Draw(spriteBatch);
+                    spriteBatch.End();
                     break;
                 case GameMode.Intro:
                     break;
@@ -215,7 +222,9 @@ namespace SettleEngine
                 case GameMode.LoadGame:
                     break;
                 case GameMode.Settings:
+                    spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
                     settingMenu.Draw(spriteBatch);
+                    spriteBatch.End();
                     break;
                 case GameMode.Credits:
                     break;
@@ -228,6 +237,8 @@ namespace SettleEngine
                     break;
             }
 
+
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
             if (devMode)
             { spriteBatch.DrawString(conFont, ("Mouse X: " + m.X + "  Mouse Y: " + m.Y), new Vector2(10, 10), Color.Black); }
 

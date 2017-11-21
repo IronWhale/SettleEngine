@@ -13,12 +13,12 @@ namespace SettleEngine.src.WorldSpace
     public class Map
     {
         private string name = "";
-        private int mapLength;
+        private int mapHeight;
         private int mapWidth;
         private float Scale;
         private Tile[,] tiles;
-        private int loadWidth = 34; //16:9 doubled and add two for a buffer
-        private int loadHeight = 20;
+        private int loadWidth = 16; //16:9 doubled and add two for a buffer
+        private int loadHeight = 9;
 
 
 
@@ -33,20 +33,26 @@ namespace SettleEngine.src.WorldSpace
 
         public void Draw(SpriteBatch spriteBatch, Vector2 pos, Vector2 scale)
         {
-            int x = (-1) * (int)(pos.X - ((loadWidth / 2))); //start tile coord for drawing
-            int y = (-1) * (int)(pos.Y - ((loadHeight / 2)));
+            //@CLEANUP THIS IS EXPENSIVE
+            //Needs to only draw the tiles around the camera
+            /*
+            int upX = (int)pos.X + loadWidth;
+            int upY = (int)pos.Y + loadHeight;
+            int lowX = (int)pos.X - loadWidth;
+            int lowY = (int)pos.Y - loadHeight;
+            */
 
-            for (int i = x; i < mapWidth; i++)
+            for (int i = 0; i < mapWidth; i++)
             {
-                for (int j = y; j < mapLength; j++)
+                for (int j = 0; j < mapHeight; j++)
                 {
-                    if(i >= 0 && j >= 0 && i <= mapWidth && j <= mapLength ) { //prevent trying to draw tiles that are outside of the bounds of the map data
-                        tiles[i, j].Draw(spriteBatch, pos, scale);
+                    //As long as i and j are not less than zero and the are between render bounds for camera Draw it.
+                    //if (i >= lowX && i <= upX && j >= lowY && j <= upY && i >= 0 && j >= 0)
+                    {
+                        tiles[i, j].Draw(spriteBatch, scale);
                     }
-                    
                 }
             }
-
         }
 
         public void saveMaptoFile(string fileName)
@@ -62,16 +68,18 @@ namespace SettleEngine.src.WorldSpace
         public void loadTEST()
         {
             Texture2D t = Loader.LoadTexture2D("TestTile");
-            mapWidth = 100;
-            mapLength = 100;
-            Tile[,] testMap = new Tile[mapWidth, mapLength];
+            mapWidth = 50;
+            mapHeight = 50;
+            Tile[,] testMap = new Tile[mapWidth, mapHeight];
             
 
             for (int i = 0; i < mapWidth; i++)
             {
-                for (int j = 0; j < mapLength; j++)
+                for (int j = 0; j < mapHeight; j++)
                 {
-                    testMap[i, j] = new Tile(new Vector2(i,j), t);
+
+                    testMap[i, j] = new Tile(new Vector2(i, j), t);
+                   
                 }
             }
             tiles = testMap;

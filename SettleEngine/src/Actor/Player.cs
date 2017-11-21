@@ -35,22 +35,6 @@ namespace SettleEngine.src.Actor
 
         public void Update(GameTime gameTime, MouseState m, KeyboardState k) {
 
-
-
-
-            //Use Keyboard inputs to move the player in the world
-            if (k.IsKeyDown(Keys.Down))
-            { pos.Y -= moveSpeed; }
-            if (k.IsKeyDown(Keys.Up))
-            { pos.Y += moveSpeed; }
-            if (k.IsKeyDown(Keys.Left))
-            { pos.X -= moveSpeed; }
-            if (k.IsKeyDown(Keys.Right))
-            { pos.X += moveSpeed; }
-
-
-
-            //Update the oldM and oldK for debounching
         }
 
 
