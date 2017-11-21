@@ -156,12 +156,13 @@ namespace SettleEngine
             //Update the transistions
             transitionManager.Update(gameTime, m , k);
 
-            if (!isTransitioning) {
+            if (!isTransitioning)
+            {
                 switch (gameMode)
                 {
                     case GameMode.Studio:
                         studioScreen.Update(gameTime);
-                       break;
+                        break;
                     case GameMode.MainMenu:
                         mainMenu.Update(gameTime, m, k);
                         break;
@@ -176,12 +177,15 @@ namespace SettleEngine
                         Exit();
                         break;
                     case GameMode.Running:
-
                         break;
                     case GameMode.Testing:
-                        wsManager.Update(gameTime, m , k);
+                        wsManager.Update(gameTime, m, k);
                         break;
                 }
+            }
+            else
+            {
+
             }
 
             //Emergancy Exit
@@ -212,9 +216,7 @@ namespace SettleEngine
                 case GameMode.LoadGame:
                     break;
                 case GameMode.Settings:
-                    spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
                     settingMenu.Draw(spriteBatch);
-                    spriteBatch.End();
                     break;
                 case GameMode.Exit:
                     break;

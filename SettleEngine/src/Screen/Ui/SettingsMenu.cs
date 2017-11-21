@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace SettleEngine.src.Ui
 {
@@ -17,6 +18,7 @@ namespace SettleEngine.src.Ui
 
         public void Initialize()
         {
+            Debug.WriteLine("[Begin] SettingMenu.Initialize");
             //Top bar panel just says the brand title Remnants possibly also a version number 
             Panel tPanel = new Panel(true, new Rectangle(0, 0, 1920, 100), new Color(205, 205, 205, 205));
             tPanel.Add(new Text("-Settings-", Fonts.Brand, UILocation.Absolute, new Vector2(1920 / 2, 50), new Color(0, 0, 0, 255)));
@@ -45,14 +47,17 @@ namespace SettleEngine.src.Ui
                 panel.Initialize();
             }
 
-            
+            Debug.WriteLine("[End] SettingMenu.Initialize");
         }
 
         public void Load(ContentManager Content)
         {
+            Debug.WriteLine("[Begin] SettingMenu.Load");
+
             foreach (var panel in panels)
             { panel.Load(Content); }
 
+            Debug.WriteLine("[End] SettingMenu.Load");
         }
 
         public void Update(GameTime gameTime, MouseState m, KeyboardState k)
@@ -63,8 +68,11 @@ namespace SettleEngine.src.Ui
 
         public void Draw(SpriteBatch spriteBatch)
         {
+
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, null);
             foreach (var panel in panels)
             { panel.Draw(spriteBatch); }
+            spriteBatch.End();
         }
 
 

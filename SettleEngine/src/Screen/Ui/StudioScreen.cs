@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,12 +23,20 @@ namespace SettleEngine.src.Ui
 
         public void Initialize()
         {
+            Debug.WriteLine("[Begin] StudioScreen.Initialize");
+
             Game1.transitionManager.Add(fOut);
+
+            Debug.WriteLine("[End] StudioScreen.Initialize");
         }
 
         public void Load(ContentManager Content)
         {
+            Debug.WriteLine("[Begin] StudioScreen.Load");
+
             font = Loader.LoadFont(Fonts.Studio);
+
+            Debug.WriteLine("[End] StudioScreen.Load");
         }
 
         public void Update(GameTime gameTime)

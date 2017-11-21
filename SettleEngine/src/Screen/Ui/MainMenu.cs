@@ -17,6 +17,8 @@ namespace SettleEngine.src.Ui
 
         public void Initialize()
         {
+            Debug.WriteLine("[Begin] MainMenu.Initialize");
+
             //Top bar panel just says the brand title Remnants possibly also a version number 
             Panel tPanel = new Panel(true,new Rectangle(0,0,1920,100), new Color(205,205,205,205));
             tPanel.Add(new Text("-Remnants-", Fonts.Brand, UILocation.Absolute, new Vector2(1920/2, 50), new Color(0,0,0,255)));
@@ -46,13 +48,18 @@ namespace SettleEngine.src.Ui
             {
                 panel.Initialize();
             }
+
+            Debug.WriteLine("[End] MainMenu.Initialize");
         }
 
         public void Load(ContentManager Content)
         {
+            Debug.WriteLine("[Begin] MainMenu.Load");
+
             foreach (var panel in panels)
             { panel.Load(Content); }
 
+            Debug.WriteLine("[End] MainMenu.Load");
         }
 
         public void Update(GameTime gameTime, MouseState m, KeyboardState k)
