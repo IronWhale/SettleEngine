@@ -36,9 +36,9 @@ namespace SettleEngine.src.WorldSpace
             int x = (-1) * (int)(pos.X - ((loadWidth / 2))); //start tile coord for drawing
             int y = (-1) * (int)(pos.Y - ((loadHeight / 2)));
 
-            for (int i = x; i < loadWidth; i++)
+            for (int i = x; i < mapWidth; i++)
             {
-                for (int j = y; j < loadHeight; j++)
+                for (int j = y; j < mapLength; j++)
                 {
                     if(i >= 0 && j >= 0 && i <= mapWidth && j <= mapLength ) { //prevent trying to draw tiles that are outside of the bounds of the map data
                         tiles[i, j].Draw(spriteBatch, pos, scale);
