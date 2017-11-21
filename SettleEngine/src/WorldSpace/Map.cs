@@ -15,10 +15,9 @@ namespace SettleEngine.src.WorldSpace
         private string name = "";
         private int mapHeight;
         private int mapWidth;
-        private float Scale;
         private Tile[,] tiles;
-        private int loadWidth = 16; //16:9 doubled and add two for a buffer
-        private int loadHeight = 9;
+        private int loadWidth = 17; //16:9 doubled and add two for a buffer
+        private int loadHeight = 10;
 
 
 
@@ -33,21 +32,19 @@ namespace SettleEngine.src.WorldSpace
 
         public void Draw(SpriteBatch spriteBatch, Vector2 pos, Vector2 scale)
         {
-            //@CLEANUP THIS IS EXPENSIVE
-            //Needs to only draw the tiles around the camera
-            /*
-            int upX = (int)pos.X + loadWidth;
-            int upY = (int)pos.Y + loadHeight;
-            int lowX = (int)pos.X - loadWidth;
-            int lowY = (int)pos.Y - loadHeight;
-            */
+            //Get the range of tiles to draw around the players position in the center of the screen
+            int upX = (int)(pos.X / scale.X) + loadWidth;
+            int upY = (int)(pos.Y / scale.Y) + loadHeight;
+            int lowX = (int)(pos.X / scale.X) - loadWidth;
+            int lowY = (int)(pos.Y / scale.Y) - loadHeight;
+          
 
             for (int i = 0; i < mapWidth; i++)
             {
                 for (int j = 0; j < mapHeight; j++)
                 {
                     //As long as i and j are not less than zero and the are between render bounds for camera Draw it.
-                    //if (i >= lowX && i <= upX && j >= lowY && j <= upY && i >= 0 && j >= 0)
+                    if (i >= lowX && i <= upX && j >= lowY && j <= upY && i >= 0 && j >= 0)
                     {
                         tiles[i, j].Draw(spriteBatch, scale);
                     }

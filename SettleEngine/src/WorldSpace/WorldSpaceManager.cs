@@ -28,10 +28,11 @@ namespace SettleEngine.src.WorldSpace
             camera = new Camera2D(device);
 
             //TEST INITIALIZATION
-            player = new Player(new Vector2(0,0), .1f, ActorDirection.Down);
+            player = new Player(new Vector2(30,20), .1f, ActorDirection.Down);
             map = new Map();
             map.loadTEST();
-            camera.Position = player.getPos();
+            //THIS MAY NOT BE 100% accurate
+            camera.Position = new Vector2((player.getPos().X * scale.X) - ((1920/2) - (scale.X/2)), (player.getPos().Y * scale.Y) - ((1080 / 2) - (scale.Y / 2)));
         }
 
         public void Load(String mapFile)
@@ -53,8 +54,9 @@ namespace SettleEngine.src.WorldSpace
             if (k.IsKeyDown(Keys.Right))
             { camera.Move(new Vector2(1, 0)); }
 
-            player.setPos(camera.Position);
-            //UPDATE  THE PLAYERS POSITION based on cameras position as upper left corner thing
+            //Update the players position based on cameras position as upper left corner thing shifted over to the center tile
+            player.setPos(new Vector2((camera.Position.X + ((1920/2) - (scale.X /2)))  , (camera.Position.Y + ((1080 / 2) - (scale.Y / 2))) ));
+            
 
         }
 
@@ -63,6 +65,7 @@ namespace SettleEngine.src.WorldSpace
             spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointWrap, null, null, null, transformMatrix: camera.GetViewMatrix());
             map.Draw(spriteBatch, player.getPos(), scale);
 
+            //TODO: Draw the character
             spriteBatch.End();
         }
     }
